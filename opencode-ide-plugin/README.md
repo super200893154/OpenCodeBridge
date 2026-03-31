@@ -13,6 +13,9 @@
 - ✅ 自定义提示模板
 - ✅ 键盘快捷键支持（Ctrl+Shift+O）
 - ✅ 进度显示和错误处理
+- ✅ 工作空间目录检查（防止发送到错误的工作空间）
+- ✅ 测试连接功能（快速验证服务器配置）
+- ✅ 在 OpenCode TUI 中显示通知
 
 ## 安装
 
@@ -73,7 +76,9 @@ opencode web --port 4096
    - **自动提交**：发送后自动提交提示
    - **发送前确认**：发送前显示确认对话框
    - **包含文件上下文**：在提示中包含文件名和语言信息
+   - **检查工作空间目录**：发送前检查 IDE 项目目录是否在 OpenCode 工作空间目录下
    - **自定义模板**：自定义发送内容的模板
+   - **测试连接**：测试与 OpenCode 服务器的连接
 
 ### 3. 发送代码到 OpenCode
 
@@ -140,8 +145,10 @@ opencode web --port 4096
 
 - `POST /tui/append-prompt` - 追加文本到提示框
 - `POST /tui/submit-prompt` - 提交当前提示
+- `POST /tui/clear-prompt` - 清空提示
 - `POST /tui/show-toast` - 显示通知
 - `GET /global/health` - 健康检查
+- `GET /path` - 获取当前工作空间目录
 
 完整的 API 文档请访问 OpenCode 官方文档：
 https://opencode.ai/docs/zh-cn/server/
@@ -230,6 +237,14 @@ opencode-ide-plugin/
 1. 确认已选中代码文本
 2. 重启 IDE
 3. 检查插件是否已启用：`Settings` → `Plugins`
+
+### 工作空间目录警告
+
+如果在发送代码时看到"工作空间目录不匹配"的警告：
+
+1. 确认 IDE 项目目录与 OpenCode 工作空间目录一致
+2. 如果确实需要发送到不同的工作空间，可以禁用"检查工作空间目录"选项
+3. 建议保持此选项启用，以避免上下文混乱
 
 ## 依赖项
 
