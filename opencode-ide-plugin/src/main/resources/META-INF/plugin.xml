@@ -1,0 +1,61 @@
+<idea-plugin>
+    <id>com.opencode.integration</id>
+    <name>OpenCode Integration</name>
+    <vendor email="support@opencode.ai" url="https://opencode.ai">OpenCode</vendor>
+
+    <description><![CDATA[
+        <p>OpenCode IDE 集成插件 - 将选中的代码片段发送到 OpenCode TUI 对话框</p>
+        <p>功能特性：</p>
+        <ul>
+            <li>右键菜单快速发送选中的代码到 OpenCode</li>
+            <li>支持自定义 OpenCode 服务器地址和端口</li>
+            <li>可配置发送前询问确认</li>
+            <li>支持多种编程语言</li>
+        </ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+        <h3>1.0.0</h3>
+        <ul>
+            <li>初始版本发布</li>
+            <li>支持发送选中代码到 OpenCode</li>
+            <li>支持配置服务器地址和端口</li>
+        </ul>
+    ]]></change-notes>
+
+    <!-- 请访问 https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html 获取版本信息 -->
+    <idea-version since-build="232" until-build="253.*"/>
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- 配置面板 -->
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.opencode.integration.settings.OpenCodeConfigurable"
+                id="com.opencode.integration.settings"
+                displayName="OpenCode Integration"/>
+
+        <!-- 通知组 -->
+        <notificationGroup id="opencode.notification" displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <!-- 编辑器右键菜单 -->
+        <action id="SendToOpenCodeAction"
+                class="com.opencode.integration.actions.SendToOpenCodeAction"
+                text="发送到 OpenCode"
+                description="将选中的代码发送到 OpenCode 对话框"
+                icon="com.opencode.integration.icons.OpenCodeIcons">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift O"/>
+        </action>
+
+        <!-- 工具栏按钮 -->
+        <action id="OpenCodeSettingsAction"
+                class="com.opencode.integration.actions.OpenCodeSettingsAction"
+                text="OpenCode Settings"
+                description="打开 OpenCode 设置">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
