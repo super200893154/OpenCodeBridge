@@ -40,7 +40,7 @@
     ]]></change-notes>
 
     <!-- 请访问 https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html 获取版本信息 -->
-    <idea-version since-build="232" until-build="253.*"/>
+    <idea-version since-build="232" until-build="261.*"/>
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
