@@ -14,8 +14,8 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-# Kotlin
-*.kt
+# Kotlin 源码需要被跟踪，不忽略 .kt 文件
+# (原配置 *.kt 错误地忽略了所有 Kotlin 源文件，已移除)
 
 # Log files
 *.log
